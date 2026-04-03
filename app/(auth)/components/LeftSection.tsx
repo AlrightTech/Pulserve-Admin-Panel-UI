@@ -19,6 +19,26 @@ const LeftSection = () => {
         desc: "Set a new password to keep your data secure."
       };
     }
+    // LeftSection.tsx ke andar ye cases add karein
+if (pathname.includes('/update-password')) {
+  return {
+    title: "Protect your account.",
+    desc: "Set a new password to keep your data secure."
+  };
+}
+// LeftSection.tsx mein ye case update karein
+if (pathname.includes('/verify-otp')) {
+  return {
+    title: "Verifying Your Email",
+    desc: "We've sent a verification Code to your email address to confirm your account."
+  };
+}
+if (pathname.includes('/verify-otp')) {
+  return {
+    title: "Verify your identity.",
+    desc: "Enter the code sent to your email to continue."
+  };
+}
     // Default Login
     return {
       title: "Measure what matters. Act in real time.",
