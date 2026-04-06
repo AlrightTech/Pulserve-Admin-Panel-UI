@@ -1,19 +1,58 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-custom-dark-blue: #0A1D2E;   /* Primary */
-  --color-custom-coral: #ED714D;       /* Secondary */
-  --color-custom-dark-gray: #1F2937;    /* Headings */
-  --color-custom-medium-gray: #4B5563;  /* Body */
+  /* Existing Colors */
+  --color-custom-dark-blue: #0A1D2E;
+  --color-custom-coral: #ED714D;
+  --color-custom-dark-gray: #1F2937;
+  --color-custom-medium-gray: #4B5563;
   --color-custom-white: #FFFFFF;
   --color-custom-red: #EF4444;
-  --color-custom-bg-light: #F9FAFB;    /* Background */
+  --color-custom-bg-light: #F9FAFB;
   --color-custom-charcoal: #333333;
-  --color-custom-dim-gray: #666666;  /* Body */
+  --color-custom-dim-gray: #666666;
   --color-custom-border: #0000001A;
-  --color-custom-auth: #718096;
+  --color-custom-auth: #718096; 
   --color-custom-authtext: #999999;
 
+
+  /* --color-custom-statsborder: #F3F4F6;
+  --color-custom-statsshadow: 0px_2px_5px_0px_rgba(0,0,0,0.05); */
+
+
+  /* Font Family Integration */
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Custom Heading Variables (Single Source of Truth) */
+  --text-heading-main: 20px;
+  --text-subheading-size: 16px;
+  --text-button1-size: 11.4px;
+}
+
+@layer components {
+  
+  .main-heading-db {
+    @apply font-sans font-bold align-middle;
+    color: var(--color-custom-charcoal);
+    font-size: var(--text-heading-main);
+    line-height: var(--leading-heading-main);
+    letter-spacing: 0%;
+  }
+
+  .sub-heading-db {
+    @apply font-sans font-medium align-middle; /* font-medium = 500 weight */
+    color: var(--color-custom-dim-gray);
+    font-size: var(--text-subheading-size);
+    line-height: var(--leading-custom);
+    letter-spacing: 0%;
+  }
+
+  .btn1-text-size {
+    @apply font-sans font-normal text-center align-middle; /* font-normal = 400 weight */
+    font-size: var(--text-button1-size);
+    line-height: var(--leading-button);
+    letter-spacing: var(--tracking-button);
+  }
 
 
 }

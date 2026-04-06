@@ -50,7 +50,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
             </span>
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Search"
               autoFocus={isSearchOpen}
               className="w-full border border-gray-200 rounded-lg py-2 lg:py-3 pl-10 lg:pl-12 pr-4 text-sm focus:ring-1 focus:ring-custom-dark-blue outline-none bg-gray-50/50 transition-all"
             />

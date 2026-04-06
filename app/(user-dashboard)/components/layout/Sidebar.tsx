@@ -1,20 +1,23 @@
 "use client";
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
   LayoutDashboard, Users, CreditCard, BarChart3, 
   Settings, LogOut, X, ChevronLeft, ChevronRight 
 } from "lucide-react";
 
 const Sidebar = ({ isMobileOpen, setIsMobileOpen }: any) => {
-  const [isOpen, setIsOpen] = useState(true); // Desktop toggle logic
+  const [isOpen, setIsOpen] = useState(true);
+  const pathname = usePathname();
 
   const menuItems = [
-    { name: "Dashboard", icon: <LayoutDashboard size={17} />, active: true },
-    { name: "User Management", icon: <Users size={17} />, active: false },
-    { name: "Subscriptions", icon: <CreditCard size={17} />, active: false },
-    { name: "Analytics", icon: <BarChart3 size={17} />, active: false },
-    { name: "Settings", icon: <Settings size={17} />, active: false },
+    { name: "Dashboard", icon: <LayoutDashboard size={17} />, path: "/" },
+    { name: "User Management", icon: <Users size={17} />, path: "/user-management" },
+    { name: "Subscriptions", icon: <CreditCard size={17} />, path: "/subscriptions" },
+    { name: "Analytics", icon: <BarChart3 size={17} />, path: "/analytics" },
+    { name: "Settings", icon: <Settings size={17} />, path: "/settings" },
   ];
 
   return (
@@ -26,14 +29,6 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }: any) => {
         lg:relative lg:translate-x-0
       `}>
         
-        {/* Close Button for Mobile Sidebar */}
-        <button 
-          className="lg:hidden absolute top-5 right-5 text-white/70 hover:text-white"
-          onClick={() => setIsMobileOpen(false)}
-        >
-          <X size={24} />
-        </button>
-
         {/* Desktop Collapse Button */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
@@ -44,7 +39,7 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }: any) => {
 
         {/* Logo Section */}
         <div className="p-4 lg:p-6 flex justify-center items-center h-20 lg:h-24">
-          <div className="relative w-24 lg:w-32 h-5">
+          <div className="relative w-24 lg:w-32 h-5 text-center">
             {isOpen ? (
               <Image src="/images/pulserv-logo.png" alt="Logo" fill className="object-contain" priority />
             ) : (
@@ -55,17 +50,22 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }: any) => {
 
         {/* Nav Items */}
         <nav className="flex-1 px-3 lg:px-5 space-y-1 mt-4">
-          {menuItems.map((item) => (
-            <div
-              key={item.name}
-              className={`flex items-center gap-3 lg:gap-4 p-3 rounded-lg cursor-pointer transition-all ${
-                isOpen ? "justify-start px-4" : "justify-center"
-              } ${item.active ? "bg-custom-coral text-white" : "hover:bg-white/10 text-white/80"}`}
-            >
-              <div className="shrink-0">{item.icon}</div>
-              {isOpen && <span className="text-sm font-medium whitespace-nowrap">{item.name}</span>}
-            </div>
-          ))}
+          {menuItems.map((item) => {
+            const isActive = pathname === item.path;
+            return (
+              <Link
+                key={item.name}
+                href={item.path}
+                onClick={() => setIsMobileOpen(false)}
+                className={`flex items-center gap-3 lg:gap-4 p-3 rounded-lg cursor-pointer transition-all ${
+                  isOpen ? "justify-start px-4" : "justify-center"
+                } ${isActive ? "bg-custom-coral text-white" : "hover:bg-white/10 text-white/80"}`}
+              >
+                <div className="shrink-0">{item.icon}</div>
+                {isOpen && <span className="text-sm font-medium whitespace-nowrap">{item.name}</span>}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Log Out */}
@@ -77,7 +77,7 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }: any) => {
         </div>
       </aside>
 
-      {/* Mobile Overlay (Background click to close) */}
+      {/* Mobile Overlay */}
       {isMobileOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-30 lg:hidden backdrop-blur-sm" 

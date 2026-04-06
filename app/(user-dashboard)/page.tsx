@@ -9,13 +9,15 @@ import PrivacyNotice from "./components/dashboard/PrivacyNotice";
 
 export default function DashboardHome() {
   return (
-    /* Yahan 'border-custom-border' use kiya hai jo aapne globals.css mein define kiya.
-       'rounded-xl' corners ko thoda round karega aur 'p-6' andar ka space manage karega.
-    */
-    <div className="bg-custo-white border border-custom-border rounded-lg p-4 lg:p-6 space-y-8">
-      <WelcomeHeader />
+    <div className="bg-custom-white border border-custom-border rounded-lg p-4 lg:py-6 lg:px-8">
       
-      <div className="space-y-6">
+      {/* Yahan humne title aur subtitle pass kar diye hain */}
+      <WelcomeHeader 
+        title="Welcome to Admin Dashboard" 
+        subtitle="Monitor platform activity and manage client accounts" 
+      />
+      
+      <div className="flex flex-col gap-8 mt-6">
         <StatsGrid />
         <UsageOverview />
         <PrivacyNotice />
