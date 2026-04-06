@@ -13,7 +13,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
       {/* Right Side: Form Area (Scrollable if needed) */}
       <div className="flex-1 flex flex-col items-center overflow-y-auto bg-white">
-        <div className="w-full py-10">
+        <div className="w-full py-8">
           {children}
         </div>
       </div>
