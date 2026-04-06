@@ -8,7 +8,14 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        // Isse Tailwind ka default font DM Sans ban jayega
+        sans: ["var(--font-dm-sans)", "sans-serif"],
+      },
+    },
   },
+  plugins: [],
 };
+
 export default config;

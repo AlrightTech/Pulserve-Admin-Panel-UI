@@ -32,7 +32,7 @@ const LeftSection = () => {
     }
 
     // 4. Verify OTP Case
-    if (pathname.includes('/verify-otp')) {
+    if (pathname.includes('/verify-email')) {
       return {
         title: "Verifying Your Email",
         desc: "We've sent a verification Code to your email address to confirm your account."
@@ -40,7 +40,7 @@ const LeftSection = () => {
     }
 
     // 5. Verify Email Case (Automatic Fetch wala page)
-    if (pathname.includes('/verify-email')) {
+    if (pathname.includes('/verify-otp')) {
       return {
         title: "Almost there.",
         desc: "Verify your email to keep your account protected."
