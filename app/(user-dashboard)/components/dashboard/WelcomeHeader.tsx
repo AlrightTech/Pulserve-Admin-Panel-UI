@@ -4,7 +4,7 @@ import MainHeading from '@/app/components/ui/MainHeading';
 
 interface WelcomeHeaderProps {
   title: string;
-  subtitle: string;
+  subtitle?: string; // 1. Yahan sirf "?" add karein takay build error khatam ho jaye
   primaryBtnText?: string;
   PrimaryIcon?: React.ElementType;
   onPrimaryClick?: () => void;
@@ -14,7 +14,7 @@ interface WelcomeHeaderProps {
 
 const WelcomeHeader = ({ 
   title, 
-  subtitle, 
+  subtitle, // 2. Ye optional prop ab error nahi dega
   primaryBtnText = "Create New",
   PrimaryIcon,
   onPrimaryClick,
@@ -25,7 +25,8 @@ const WelcomeHeader = ({
     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 lg:gap-6">
       <div className="space-y-1 pt-2">
         <MainHeading text={title} />
-        <p className="text-sm text-gray-500 font-sans">{subtitle}</p>
+        {/* 3. Conditional rendering use karein takay subtitle na hone par extra space na aaye */}
+        {subtitle && <p className="text-sm text-gray-500 font-sans">{subtitle}</p>}
       </div>
 
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">

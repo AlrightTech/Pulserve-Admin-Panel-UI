@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { 
   LayoutDashboard, Users, CreditCard, BarChart3, 
   Settings, LogOut, X, ChevronLeft, ChevronRight 
@@ -11,6 +11,7 @@ import {
 const Sidebar = ({ isMobileOpen, setIsMobileOpen }: any) => {
   const [isOpen, setIsOpen] = useState(true);
   const pathname = usePathname();
+  const router = useRouter();
 
   const menuItems = [
     { name: "Dashboard", icon: <LayoutDashboard size={17} />, path: "/" },
@@ -19,6 +20,10 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }: any) => {
     { name: "Analytics", icon: <BarChart3 size={17} />, path: "/analytics" },
     { name: "Settings", icon: <Settings size={17} />, path: "/settings" },
   ];
+
+  const handleLogout = () => {
+    router.push('/login'); 
+  };
 
   return (
     <>
@@ -29,6 +34,16 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }: any) => {
         lg:relative lg:translate-x-0
       `}>
         
+        {/* NEW: Top Row with Close Icon for Mobile */}
+        <div className="flex justify-end px-4 pt-4 lg:hidden">
+          <button 
+            onClick={() => setIsMobileOpen(false)}
+            className="text-white/70 hover:text-white transition-colors"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
         {/* Desktop Collapse Button */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
@@ -68,11 +83,16 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }: any) => {
           })}
         </nav>
 
-        {/* Log Out */}
+        {/* Log Out Section */}
         <div className="p-4 border-t border-white/10 mb-4">
-          <div className={`flex items-center gap-4 p-3 text-white/70 hover:text-white cursor-pointer ${isOpen ? "justify-start px-4" : "justify-center"}`}>
+          <div 
+            onClick={handleLogout}
+            className={`flex items-center gap-4 p-3 text-white/70 hover:text-white cursor-pointer transition-colors ${
+              isOpen ? "justify-start px-4" : "justify-center"
+            }`}
+          >
             <LogOut size={18} />
-            {isOpen && <span className="text-sm">Log Out</span>}
+            {isOpen && <span className="text-sm font-medium">Log Out</span>}
           </div>
         </div>
       </aside>
