@@ -51,7 +51,6 @@ export default function Button({
       break
 
     case 'outlined':
-      // White/Transparent -> Coral animation
       variantClasses = 'bg-transparent border-custom-coral text-custom-charcoal'
       overlayColor = 'bg-custom-coral'
       textColorHover = 'group-hover:text-white'

@@ -48,7 +48,7 @@
   }
 
   .btn1-text-size {
-    @apply font-sans font-normal text-center align-middle; /* font-normal = 400 weight */
+    @apply font-sans font-normal text-center align-middle; 
     font-size: var(--text-button1-size);
     line-height: var(--leading-button);
     letter-spacing: var(--tracking-button);
