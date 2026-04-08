@@ -12,11 +12,13 @@ interface WelcomeHeaderProps {
   onPrimaryClick?: () => void;
   showSecondaryBtn?: boolean;
   primaryBtnClass?: string;
+  primaryButton?: React.ReactNode;
 }
 
 const WelcomeHeader = ({ 
   title, 
   subtitle, 
+  primaryButton,
   primaryBtnText = "Create New Survey", 
   onPrimaryClick,
   showSecondaryBtn = true,

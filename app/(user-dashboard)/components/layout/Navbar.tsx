@@ -43,16 +43,16 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
               <Image 
                 src="/images/svg-icons/search-icon.svg" 
                 alt="Search" 
-                width={16}
-                height={16}
-                className="opacity-60"
+                width={18}
+                height={18}
+                className=""
               />
             </span>
             <input
               type="text"
               placeholder="Search"
               autoFocus={isSearchOpen}
-              className="w-full border border-gray-200 rounded-lg py-2 lg:py-3 pl-10 lg:pl-12 pr-4 text-sm focus:ring-1 focus:ring-custom-dark-blue outline-none bg-gray-50/50 transition-all"
+              className="w-full font-normal text-custom-medium-gray border border-custom-border rounded-lg py-2 lg:py-3 pl-10 lg:pl-12 pr-4 text-sm focus:ring-1 focus:ring-custom-dark-blue outline-none transition-all"
             />
           </div>
         </div>

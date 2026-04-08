@@ -14,11 +14,13 @@
   --color-custom-border: #0000001A;
   --color-custom-auth: #718096; 
   --color-custom-authtext: #999999;
+  --color-custom-green: #16A34A;
 
 
   /* --color-custom-statsborder: #F3F4F6;
   --color-custom-statsshadow: 0px_2px_5px_0px_rgba(0,0,0,0.05); */
 
+  
 
   /* Font Family Integration */
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;

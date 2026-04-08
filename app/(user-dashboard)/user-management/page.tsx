@@ -5,8 +5,8 @@ import WelcomeHeader from '../components/dashboard/WelcomeHeader';
 import FilterBar from './components/FilterBar';
 import UserTable from './components/UserTable';
 import AddClientModal from './components/AddClientModal';
-import EditClientModal from './components/EditClientModal'; // Naya import
-import PrivacyNotice from '../components/dashboard/PrivacyNotice';
+import EditClientModal from './components/EditClientModal'; 
+import PrivacyNotice from './components/PrivacyNotice';
 
 const dummyClients = [
   { name: "Randall", email: "emily@innovationlabs.com", plan: "Professional", subStatus: "Suspended", activeSurveys: 5, totalResponses: "1,234", accountStatus: "Active" },

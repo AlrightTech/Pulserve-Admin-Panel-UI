@@ -18,14 +18,14 @@ const UserTable = ({ clients, onEdit }: UserTableProps) => {
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden min-h-[400px]">
+    <div className="bg-custom-white rounded-lg shadow-sm overflow-hidden min-h-[400px]">
       <div className="p-6 border-b border-gray-100">
-        <h2 className="text-lg font-bold text-gray-800 font-sans">All Clients</h2>
+        <h2 className="text-xl font-semibold text-custom-charcoal font-sans">All Clients</h2>
       </div>
-      <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+      <div className="overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <table className="w-full text-left border-collapse border-t border-custom-border">
           <thead>
-            <tr className="bg-gray-50 text-gray-400 text-[11px] uppercase font-bold tracking-wider">
+            <tr className="bg-gray-50 text-custom-charcoal text-sm font-normal">
               <th className="px-6 py-4">Client Name</th>
               <th className="px-6 py-4">Email</th>
               <th className="px-6 py-4">Subscription Plan</th>
@@ -40,16 +40,16 @@ const UserTable = ({ clients, onEdit }: UserTableProps) => {
             {clients.map((client, index) => (
               <tr 
                 key={index} 
-                onClick={() => handleRowClick(client.email)} // Row click logic
-                className="hover:bg-gray-50 cursor-pointer transition-colors text-sm text-gray-700"
+                onClick={() => handleRowClick(client.email)} 
+                className="hover:bg-gray-50 cursor-pointer transition-colors text-sm text-custom-dim-gray"
               >
-                <td className="px-6 py-4 font-semibold">{client.name}</td>
+                <td className="px-6 py-4 font-normal ">{client.name}</td>
                 <td className="px-6 py-4 text-gray-500">{client.email}</td>
                 <td className="px-6 py-4">{client.plan}</td>
                 <td className="px-6 py-4">
-                  <span className={`px-3 py-1 rounded-full text-[11px] font-bold ${
-                    client.subStatus === 'Active' ? 'bg-green-50 text-green-600' : 
-                    client.subStatus === 'Suspended' ? 'bg-orange-50 text-orange-600' : 
+                  <span className={`px-2 py-1 rounded-lg text-xs font-normal ${
+                    client.subStatus === 'Active' ? 'bg-green-50 text-custom-green' : 
+                    client.subStatus === 'Suspended' ? 'bg-orange-100 text-orange-700' : 
                     'bg-red-50 text-red-600'
                   }`}>
                     {client.subStatus}
@@ -58,20 +58,19 @@ const UserTable = ({ clients, onEdit }: UserTableProps) => {
                 <td className="px-6 py-4 text-center">{client.activeSurveys}</td>
                 <td className="px-6 py-4 text-center">{client.totalResponses}</td>
                 <td className="px-6 py-4 text-center">
-                  <span className={`px-3 py-1 rounded-full text-[11px] font-bold ${
-                    client.accountStatus === 'Active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
+                  <span className={`px-2 py-1 rounded-lg text-xs font-normal ${
+                    client.accountStatus === 'Active' ? 'bg-green-100 text-custom-green' : 'bg-gray-100 text-gray-800'
                   }`}>
                     {client.accountStatus}
                   </span>
                 </td>
                 <td className="px-6 py-4 text-right relative">
-                  {/* stopPropagation yahan zaroori hai taake menu kholne par row click trigger na ho */}
                   <button 
                     onClick={(e) => {
                       e.stopPropagation(); 
                       setActiveMenu(activeMenu === index ? null : index);
                     }}
-                    className="text-gray-400 hover:text-gray-600 p-1"
+                    className="text-gray-400 hover:text-gray-600 p-1 cursor-pointer"
                   >
                     <MoreVertical size={18} />
                   </button>
@@ -93,9 +92,9 @@ const UserTable = ({ clients, onEdit }: UserTableProps) => {
                             onEdit(client); 
                             setActiveMenu(null); 
                           }}
-                          className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+                          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-custom-charcoal hover:bg-gray-50 shadow-md cursor-pointer transition-colors"
                         >
-                          <Edit2 size={14} />
+                          <Edit2 size={11} />
                           <span>Edit</span>
                         </button>
                       </div>

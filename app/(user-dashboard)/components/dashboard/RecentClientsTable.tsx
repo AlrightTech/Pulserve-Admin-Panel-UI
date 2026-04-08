@@ -11,25 +11,25 @@ const clients = [
 
 const RecentClientsTable = () => {
   return (
-    <div className="bg-white border border-custom-border rounded-2xl overflow-hidden shadow-sm">
+    <div className="bg-custom-white border border-custom-border rounded-2xl overflow-hidden">
       {/* Table Header */}
       <div className="p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold text-custom-charcoal font-dm-sans">Recent Client Accounts</h2>
-          <p className="text-custom-medium-gray text-sm">Manage and monitor client subscriptions</p>
+          <h2 className="text-xl font-semibold text-custom-charcoal font-dm-sans">Recent Client Accounts</h2>
+          <p className="text-custom-dim-gray text-sm font-normal">Manage and monitor client subscriptions</p>
         </div>
         
         <div className="flex items-center gap-3 w-full md:w-auto">
           <div className="relative flex-1 md:w-64">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-bold text-custom-authtext" size={13} />
             <input 
               type="text" 
               placeholder="Search clients..." 
-              className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+              className="w-full pl-10 pr-4 py-2 text-custom-dark-blue placeholder-custom-medium-gray/60 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
             />
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all">
-            <Filter size={18} />
+          <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-sm text-xs font-normal text-custom-charcoal hover:bg-gray-50 transition-all">
+            <Filter size={12}  fill="black" className="text-black"/>
             Filter
           </button>
         </div>
@@ -37,57 +37,71 @@ const RecentClientsTable = () => {
 
       {/* Table Content */}
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full text-left border-collapse border border-gray-200">
           <thead>
-            <tr className="bg-gray-50/50 border-y border-gray-100">
-              <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Client</th>
-              <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Plan</th>
-              <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">Surveys</th>
-              <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">Responses</th>
-              <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">Actions</th>
+            <tr className="bg-gray-50 border-y border-gray-200">
+              {/* Client align left rahega text-center nahi */}
+              <th className="px-6 py-4 text-xs font-normal text-custom-dim-gray tracking-wider text-left">Client</th>
+              <th className="px-6 py-4 text-xs font-normal text-custom-dim-gray tracking-wider text-center">Plan</th>
+              <th className="px-6 py-4 text-xs font-normal text-custom-dim-gray tracking-wider text-center">Status</th>
+              <th className="px-6 py-4 text-xs font-normal text-custom-dim-gray tracking-wider text-center">Surveys</th>
+              <th className="px-6 py-4 text-xs font-normal text-custom-dim-gray tracking-wider text-center">Responses</th>
+              <th className="px-6 py-4 text-xs font-normal text-custom-dim-gray tracking-wider text-center">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {clients.map((client) => (
               <tr key={client.id} className="hover:bg-gray-50/50 transition-colors">
+                {/* Client Column - Left Aligned */}
                 <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <img src={client.avatar} alt="" className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200" />
-                    <div>
-                      <div className="text-sm font-bold text-custom-charcoal">{client.name}</div>
-                      <div className="text-[11px] text-gray-400">{client.company}</div>
+                  <div className="flex items-center gap-3.5">
+                    <img src={client.avatar} alt="" className="w-9 h-9 rounded-full bg-gray-100 border border-gray-200 object-cover" />
+                    <div className="flex flex-col justify-center">
+                      <div className="text-sm font-medium text-custom-charcoal leading-tight">{client.name}</div>
+                      <div className="text-xs font-normal text-custom-dim-gray">{client.company}</div>
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4">
-                  <span className={`px-3 py-1 rounded-full text-[11px] font-bold ${
-                    client.plan === 'Enterprise' ? 'bg-purple-50 text-purple-600 border border-purple-100' :
-                    client.plan === 'Professional' ? 'bg-blue-50 text-blue-600 border border-blue-100' :
-                    'bg-gray-50 text-gray-600 border border-gray-100'
+
+                {/* Plan Column - Centered */}
+                <td className="px-6 py-4 text-center">
+                  <span className={`inline-block px-3.5 py-1 rounded-full text-xs font-normal min-w-[90px] ${
+                    client.plan === 'Enterprise' ? 'bg-purple-100 text-purple-700 border border-purple-200' :
+                    client.plan === 'Professional' ? 'bg-blue-100 text-blue-700 border border-blue-200' :
+                    'bg-gray-100 text-gray-800 border border-gray-200'
                   }`}>
                     {client.plan}
                   </span>
                 </td>
+
+                {/* Status Column - Centered */}
                 <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-center gap-2">
                     <span className={`w-2 h-2 rounded-full ${
                       client.status === 'Active' ? 'bg-green-500' :
                       client.status === 'Pending' ? 'bg-amber-500' : 'bg-red-500'
                     }`}></span>
-                    <span className="text-sm font-medium text-gray-600">{client.status}</span>
+                    <span className="text-sm font-normal text-custom-charcoal">{client.status}</span>
                   </div>
                 </td>
+
+                {/* Surveys Column - Centered Badge */}
                 <td className="px-6 py-4 text-center">
-                  <span className="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-md text-sm font-bold">
-                    {client.surveys}
-                  </span>
+                  <div className="flex justify-center">
+                    <span className="bg-blue-50 text-custom-dark-blue w-10 h-10 flex items-center justify-center rounded-lg text-sm font-normal">
+                      {client.surveys}
+                    </span>
+                  </div>
                 </td>
-                <td className="px-6 py-4 text-center text-sm font-medium text-gray-600">
-                  {client.responses}
+
+                {/* Responses Column - Centered Text */}
+                <td className="px-6 py-4 text-center text-sm font-normal text-custom-charcoal">
+                  {client.responses.toLocaleString()}
                 </td>
-                <td className="px-6 py-4 text-right">
-                  <button className="text-gray-400 hover:text-gray-600 transition-colors">
+
+                {/* Actions Column - Right Aligned */}
+                <td className="px-6 py-4 text-center">
+                  <button className="text-gray-400 hover:text-gray-600 transition-colors inline-block">
                     <MoreVertical size={20} />
                   </button>
                 </td>
@@ -99,8 +113,8 @@ const RecentClientsTable = () => {
 
       {/* Table Footer */}
       <div className="p-4 bg-gray-50/30 border-t border-gray-100 flex justify-between items-center">
-        <span className="text-xs font-medium text-gray-500">Showing 5 of 1,248 client accounts</span>
-        <button className="flex items-center gap-1 text-xs font-bold text-blue-900 hover:underline">
+        <span className="text-sm font-normal text-custom-dim-gray">Showing 5 of 1,248 client accounts</span>
+        <button className="flex items-center gap-1 text-sm font-normal text-custom-dark-blue hover:underline">
           View All Clients <ArrowRight size={14} />
         </button>
       </div>

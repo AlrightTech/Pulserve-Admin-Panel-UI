@@ -26,7 +26,7 @@ const StatCard = ({ title, value, trend, iconPath, iconBg, iconSize }: StatCardP
           className="object-contain"
         />
       </div>
-      <span className={`text-sm font-semibold ${trend.startsWith('+') ? 'text-green-600' : 'text-gray-400'}`}>
+      <span className={`text-sm font-normal ${trend.startsWith('+') ? 'text-custom-green' : 'text-custom-dim-gray'}`}>
         {trend}
       </span>
     </div>
@@ -36,7 +36,7 @@ const StatCard = ({ title, value, trend, iconPath, iconBg, iconSize }: StatCardP
       <h3 className="text-[25px] font-bold text-custom-charcoal leading-tight">
         {value}
       </h3>
-      <p className="text-custom-medium-gray text-sm font-medium">
+      <p className="text-custom-dim-gray text-sm font-medium">
         {title}
       </p>
     </div>
@@ -51,7 +51,7 @@ const StatsGrid = () => {
       trend: "+12%",
       iconPath: "/images/svg-icons/clients-accounts.svg",
       iconBg: "bg-blue-50",
-      iconSize: 22, // Is icon ko resize karein yahan se
+      iconSize: 22, 
     },
     {
       title: "Active Subscriptions",
@@ -59,7 +59,7 @@ const StatsGrid = () => {
       trend: "+5%",
       iconPath: "/images/svg-icons/active-accounts.svg",
       iconBg: "bg-orange-50",
-      iconSize:15, // Agay barayein ya kam karein pixels mein
+      iconSize:15, 
     },
     {
       title: "Active Surveys",
