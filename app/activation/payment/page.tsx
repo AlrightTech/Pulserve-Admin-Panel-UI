@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function PaymentPage() {
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex flex-col items-center py-20 px-4">
-      <div className="max-w-2xl w-full">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col items-center py-20 px-4">
+      <div className="max-w-3xl w-full">
         <h1 className="text-2xl font-bold text-[#1a2b3c] mb-2">Activate Your Account</h1>
         <p className="text-gray-500 mb-8">Please enter your payment details below.</p>
 

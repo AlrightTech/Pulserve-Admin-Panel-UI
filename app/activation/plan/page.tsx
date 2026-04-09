@@ -5,8 +5,8 @@ export default function PlanPage() {
   const features = ["Unlimited Surveys", "Advanced Analytics", "AI Insights", "Custom Branding", "Priority Support"];
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex flex-col items-center py-20 px-4">
-      <div className="max-w-2xl w-full">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col items-center py-20 px-4">
+      <div className="max-w-3xl w-full">
         <h1 className="text-2xl font-bold text-[#1a2b3c] mb-2 text-center md:text-left">Activate Your Account</h1>
         <p className="text-gray-500 mb-8 text-center md:text-left">Choose the plan that fits your needs.</p>
 
