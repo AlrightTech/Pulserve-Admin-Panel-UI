@@ -1,48 +1,61 @@
 "use client";
 import React from 'react';
+import Button from "@/app/components/ui/Button";
+
 
 export default function ChangePassword() {
   return (
-    <div className="max-w-2xl space-y-8 animate-in fade-in duration-300">
-      <h3 className="text-lg font-bold text-gray-800">Change Password</h3>
+    <div className="w-full space-y-8 animate-in fade-in duration-300">
+      <h3 className="text-xl font-semibold text-custom-charcoal">Change Password</h3>
       
       <div className="space-y-6">
         <div className="space-y-2">
-          <label className="text-xs font-bold text-gray-800">Current Password</label>
+          <label className="text-sm font-semibold text-custom-charcoal">Current Password</label>
           <input 
             type="password" 
             placeholder="••••••••"
-            className="w-full p-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-custom-dark-blue"
+            className="mt-1 w-full px-3 py-3.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-custom-dark-blue"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs font-bold text-gray-800">New Password</label>
+          <label className="text-sm font-semibold text-custom-charcoal">New Password</label>
           <input 
             type="password" 
             placeholder="••••••••"
-            className="w-full p-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-custom-dark-blue"
+            className="mt-1 w-full px-3 py-3.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-custom-dark-blue"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs font-bold text-gray-800">Confirm New Password</label>
+          <label className="text-sm font-semibold text-custom-charcoal">Confirm New Password</label>
           <input 
             type="password" 
             placeholder="••••••••"
-            className="w-full p-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-custom-dark-blue"
+            className="mt-1 w-full px-3 py-3.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-custom-dark-blue"
           />
-          <p className="text-[10px] text-gray-400 mt-1">Password must be at least 8 characters.</p>
+          <p className="text-sm text-custom-dim-gray mt-1">Password must be at least 8 characters.</p>
         </div>
       </div>
 
       <div className="flex flex-col sm:flex-row justify-end gap-3 pt-6 border-t border-gray-50">
-        <button className="btn1-text-size px-6 py-2.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors">
+        <Button 
+          type="button"
+          variant="soft" 
+          onClick={() => console.log("Password change cancelled")}
+          className="px-6 !py-2.5 text-sm" 
+        >
           Cancel
-        </button>
-        <button className="btn1-text-size px-6 py-2.5 rounded-lg bg-custom-dark-blue text-white hover:bg-opacity-90 transition-all shadow-sm">
+        </Button>
+        
+        <Button 
+          type="button"
+          variant="filled" 
+          onClick={() => console.log("Updating password...")}
+          className="px-6 !py-2.5 text-sm shadow-sm"
+        >
           Update Password
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -2,9 +2,9 @@ import React from 'react';
 
 const DataPrivacyNotice = () => {
   return (
-    <div className="bg-[#FFF9E6] border border-[#FFECB3] p-4 rounded-lg mt-auto">
-      <p className="text-[13px] text-[#856404] leading-relaxed">
-        <span className="font-bold">Data Privacy Notice:</span> All client subscription data is encrypted and stored securely. Access to this information is logged and monitored for compliance purposes.
+    <div className="bg-[#FFF8E1] border border-[#FFD54F] px-4 py-6 rounded-xl mt-auto">
+      <p className="text-sm font-normal text-custom-dim-gray">
+        <span className="font-semibold text-sm text-custom-charcoal">Data Privacy Notice:</span> All client subscription data is encrypted and stored securely. Access to this information is logged and monitored for compliance purposes.
       </p>
     </div>
   );

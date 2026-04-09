@@ -22,17 +22,14 @@ const AddClientModal = ({ isOpen, onClose }: AddClientModalProps) => {
       {/* Modal Content */}
       <div className="bg-custom-white rounded-xl border border-custom-border shadow-2xl w-full max-w-xl z-10 overflow-hidden relative flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="flex flex-col p-6 pt-4 pb-2 shrink-0">
-          
+        <div className="flex flex-col p-6 pt-4 pb-2 shrink-0">        
           <div className="flex justify-end">
             <button 
               onClick={onClose} 
-              className="text-custom-carcoal hover:text-gray-600 transition-colors cursor-pointer"
-            >
+              className="text-custom-carcoal hover:text-gray-600 transition-colors cursor-pointer" >
               <X size={14} />
             </button>
           </div>
-
           <div className="mt-2">
             <h2 className="text-xl font-bold text-custom-charcoal">
               Add New Client

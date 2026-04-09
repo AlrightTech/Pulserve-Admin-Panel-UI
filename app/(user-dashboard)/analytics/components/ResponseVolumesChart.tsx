@@ -17,7 +17,7 @@ export default function ResponseVolumesChart() {
           <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{fontSize: 10, fill: '#9ca3af'}} dy={10} />
           <YAxis axisLine={false} tickLine={false} tick={{fontSize: 10, fill: '#9ca3af'}} />
           <Tooltip cursor={{fill: '#f9fafb'}} contentStyle={{ borderRadius: '10px', border: 'none' }} />
-          <Bar dataKey="value" fill="#f97316" radius={[4, 4, 0, 0]} barSize={50} />
+          <Bar dataKey="value" fill="#F3704B" radius={[4, 4, 0, 0]} barSize={50} />
         </BarChart>
       </ResponsiveContainer>
     </div>

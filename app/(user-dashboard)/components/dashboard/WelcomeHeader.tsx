@@ -12,13 +12,13 @@ interface WelcomeHeaderProps {
   onPrimaryClick?: () => void;
   showSecondaryBtn?: boolean;
   primaryBtnClass?: string;
-  primaryButton?: React.ReactNode;
+  primaryButton?: React.ReactNode; 
 }
 
 const WelcomeHeader = ({ 
   title, 
   subtitle, 
-  primaryButton,
+  primaryButton, // Destructure here
   primaryBtnText = "Create New Survey", 
   onPrimaryClick,
   showSecondaryBtn = true,
@@ -33,7 +33,7 @@ const WelcomeHeader = ({
 
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6">
         {showSecondaryBtn && (
-         <Button 
+          <Button 
               variant="outlined" 
               rounded="md" 
               className="px-4 rounded-lg border-custom-coral font-normal group [&_span]:gap-4 btn1-text-size border-[1.4px]">
@@ -47,6 +47,10 @@ const WelcomeHeader = ({
               Export Report
           </Button>
         )}   
+
+        {primaryButton ? (
+          primaryButton
+        ) : (
           <Button 
             variant="filled" 
             rounded="lg"
@@ -54,11 +58,11 @@ const WelcomeHeader = ({
             className={`px-3 py-3.5 ${primaryBtnClass}`}
           >
             <Plus size={15} strokeWidth={2.5} />
-            
             <span className="text-sm font-medium whitespace-nowrap">
-              {primaryBtnText === "Create New" ? "Create New Survey" : primaryBtnText}
+              {primaryBtnText}
             </span>
           </Button>
+        )}
       </div>
     </div>
   );

@@ -4,8 +4,26 @@ import WelcomeHeader from "../../components/dashboard/WelcomeHeader";
 import UsageOverview from "../../components/dashboard/UsageOverview";
 import Button from "@/app/components/ui/Button";
 import { ArrowLeft } from "lucide-react";
+import Link from "next/link"; 
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
+import { FileText, TrendingUp, BarChart3 } from "lucide-react";
 
-// Data ko yahan rakhein taake hum name match kar saken
+const data = [
+  { name: "Sep", value: 220 },
+  { name: "Oct", value: 240 },
+  { name: "Nov", value: 210 },
+  { name: "Dec", value: 180 },
+  { name: "Jan", value: 190 },
+  { name: "Feb", value: 195 },
+];
+
 const dummyClients = [
   {
     name: "Randall",
@@ -72,51 +90,57 @@ export default function ClientDetailsPage({
         title={displayTitle}
         subtitle="Detailed client information and usage metrics"
         showSecondaryBtn={false}
+        // primaryButton={null}
+
         primaryButton={
-          <Button
-            variant="soft"
-            href="/user-management"
-            icon={ArrowLeft}
-            className="border-gray-200"
-          >
-            Back to List
-          </Button>
+          <Link href="/user-management" passHref>
+    <Button
+      variant="soft"
+      icon={ArrowLeft}
+      className="border-gray-200"
+    >
+      Back to List
+    </Button>
+  </Link>
         }
       />
-      {/* User Overview Section */}
-      <div className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm font-sans">
-        <h3 className="text-lg font-bold mb-6 text-gray-800">User Overview</h3>
+
+      <div className="bg-custom-white px-6 py-8 rounded-xl shadow-sm font-sans">
+        <h3 className="text-xl font-semibold mb-6 text-custom-charcoal">
+          User Overview
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8">
           <div>
-            <p className="text-[11px] text-gray-400 uppercase font-bold tracking-wider">
+            <p className="text-xs text-custom-dim-gray font-normal">
               Primary Contact
             </p>
-            {/* Yahan bhi name show hoga */}
-            <p className="text-sm font-semibold mt-1 text-gray-700">
+            <p className="text-base font-medium mt-1 text-custom-charcoal">
               {client ? client.name : "N/A"}
             </p>
           </div>
           <div>
-            <p className="text-[11px] text-gray-400 uppercase font-bold tracking-wider">
+            <p className="text-xs text-custom-dim-gray font-normal">
               Contact Email
             </p>
-            <p className="text-sm font-semibold mt-1 text-gray-700">{id}</p>
+            <p className="text-base font-medium mt-1 text-custom-charcoal">
+              {id}
+            </p>
           </div>
           <div>
-            <p className="text-[11px] text-gray-400 uppercase font-bold tracking-wider">
+            <p className="text-xs text-custom-dim-gray font-normal">
               Subscription Plan
             </p>
-            <p className="text-sm font-semibold mt-1 text-gray-700">
+            <p className="text-base font-medium mt-1 text-custom-charcoal">
               {client?.plan || "Professional"}
             </p>
           </div>
           {/* Status Indicators */}
           <div>
-            <p className="text-[11px] text-gray-400 uppercase font-bold tracking-wider">
+            <p className="text-xs text-custom-dim-gray font-normal">
               Account Status
             </p>
             <span
-              className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold mt-1 ${
+              className={`inline-block px-3 py-1 rounded-lg text-xs font-medium mt-1 ${
                 client?.accountStatus === "Active"
                   ? "bg-green-100 text-green-700"
                   : "bg-red-100 text-red-700"
@@ -126,11 +150,11 @@ export default function ClientDetailsPage({
             </span>
           </div>
           <div>
-            <p className="text-[11px] text-gray-400 uppercase font-bold tracking-wider">
+            <p className="text-xs text-custom-dim-gray font-normal">
               Subscription Status
             </p>
             <span
-              className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold mt-1 ${
+              className={`inline-block px-3 py-1 rounded-lg text-xs font-medium mt-1 ${
                 client?.subStatus === "Active"
                   ? "bg-green-100 text-green-700"
                   : "bg-orange-100 text-orange-600"
@@ -142,9 +166,92 @@ export default function ClientDetailsPage({
         </div>
       </div>
 
-      <div className="space-y-4">
-        <h3 className="text-lg font-bold text-gray-800">Usage Summary</h3>
-        <UsageOverview />
+      <div className="bg-custom-white px-6 py-8 rounded-xl shadow-sm font-sans">
+        <h3 className="text-xl font-semibold mb-6 text-custom-charcoal">Usage Summary</h3>
+
+        {/* Stats Cards Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {/* Active Surveys */}
+          <div className="bg-[#EFF6FF] px-4 py-4 rounded-xl">
+            <div className="flex items-center gap-2 text-[#3B82F6] mb-3">
+              <TrendingUp  size={14} />
+              <span className="text-xs font-normal text-custom-dim-gray">
+                Active Surveys
+              </span>
+            </div>
+            <h2 className="text-2xl font-sans font-bold text-custom-charcoal">5</h2>
+          </div>
+
+          {/* Total Responses */}
+          <div className="bg-[#F0FDF4] px-4 py-4 rounded-xl">
+            <div className="flex items-center gap-2 text-[#22C55E] mb-3">
+              <TrendingUp size={14} />
+              <span className="text-xs font-normal text-custom-dim-gray">
+                Total Responses
+              </span>
+            </div>
+            <h2 className="text-2xl font-sans font-bold text-custom-charcoal">1,234</h2>
+          </div>
+
+          {/* Avg per Survey */}
+          <div className="bg-[#FAF5FF] px-4 py-4 rounded-xl">
+            <div className="flex items-center gap-2 text-[#A855F7] mb-3">
+              <TrendingUp size={14} />
+              <span className="text-xs font-normal text-custom-dim-gray">
+                Avg. per Survey
+              </span>
+            </div>
+            <h2 className="text-2xl font-sans font-bold text-custom-charcoal">247</h2>
+          </div>
+        </div>
+
+        {/* Chart Section */}
+        <div className="mt-8">
+          <h4 className="text-base font-semibold text-custom-charcoal mb-4">
+            Usage Trend (Last 6 Months)
+          </h4>
+          <div className="h-[300px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                data={data}
+                margin={{ top: 5, right: 5, left: -20, bottom: 5 }}
+              >
+                <CartesianGrid
+                  vertical={false}
+                  strokeDasharray="3 3"
+                  stroke="#E5E7EB"
+                />
+                <XAxis
+                  dataKey="name"
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fill: "#666666", fontSize: 11 }}
+                  dy={10}
+                />
+                <YAxis
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fill: "#666666", fontSize: 11 }}
+                  domain={[0, 240]}
+                  ticks={[0, 60, 120, 180, 240]}
+                />
+                <Line
+                  type="monotone" 
+                  dataKey="value"
+                  stroke="#0F172A" 
+                  strokeWidth={2.5}
+                  dot={{
+                    r: 4,
+                    fill: "#0F172A",
+                    strokeWidth: 2,
+                    stroke: "#0F172A",
+                  }}
+                  activeDot={{ r: 6, strokeWidth: 0 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
     </div>
   );

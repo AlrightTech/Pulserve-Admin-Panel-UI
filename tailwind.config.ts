@@ -10,8 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // Isse Tailwind ka default font DM Sans ban jayega
         sans: ["var(--font-dm-sans)", "sans-serif"],
+      },
+      boxShadow: {
+        'custom-shadow': '0px 1px 2px -1px rgba(0,0,0,0.5), 0px 1px 3px 0px rgba(0,0,0,0.1)',
       },
     },
   },

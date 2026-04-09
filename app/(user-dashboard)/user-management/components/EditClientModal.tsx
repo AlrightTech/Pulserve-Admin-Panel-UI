@@ -15,19 +15,27 @@ const EditClientModal = ({ isOpen, onClose, clientData }: EditClientModalProps) 
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
       
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg z-10 overflow-hidden relative font-sans">
+      <div className="bg-custom-white rounded-xl border border-custom-border shadow-2xl w-full max-w-xl z-10 overflow-hidden relative flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-100">
-          <h2 className="text-xl font-bold text-gray-800">Edit Client</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
-            <X size={20} />
-          </button>
+        <div className="flex flex-col p-6 pt-4 pb-2 shrink-0">        
+          <div className="flex justify-end">
+            <button 
+              onClick={onClose} 
+              className="text-custom-carcoal hover:text-gray-600 transition-colors cursor-pointer" >
+              <X size={14} />
+            </button>
+          </div>
+          <div className="mt-2">
+            <h2 className="text-xl font-bold text-custom-charcoal">
+              Edit Client
+            </h2>
+          </div>
         </div>
 
         {/* Form Body */}
-        <form className="p-6 space-y-4">
+        <form className="p-6 space-y-4 pt-0 overflow-y-auto max-h-[60vh] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">Company Name</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5 mt-6">Company Name</label>
             <input type="text" defaultValue={clientData.name} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-custom-coral text-sm" />
           </div>
 

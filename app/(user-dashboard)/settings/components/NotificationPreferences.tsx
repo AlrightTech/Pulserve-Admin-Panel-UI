@@ -1,11 +1,13 @@
 "use client";
 import React from 'react';
+import Button from "@/app/components/ui/Button";
+
 
 const NotificationItem = ({ title, desc }: { title: string, desc: string }) => (
   <div className="flex justify-between items-start py-4">
     <div className="space-y-1">
-      <p className="text-sm font-medium text-gray-800">{title}</p>
-      <p className="text-xs text-gray-400">{desc}</p>
+      <p className="text-sm font-medium text-custom-charcoal">{title}</p>
+      <p className="text-xs font-normal text-custom-dim-gray">{desc}</p>
     </div>
     <label className="relative inline-flex items-center cursor-pointer">
       <input type="checkbox" className="sr-only peer" defaultChecked />
@@ -16,19 +18,19 @@ const NotificationItem = ({ title, desc }: { title: string, desc: string }) => (
 
 export default function NotificationPreferences() {
   return (
-    <div className="max-w-2xl space-y-8">
-      <h3 className="text-lg font-bold text-gray-800">Notification Preferences</h3>
+    <div className="w-full space-y-8">
+      <h3 className="text-xl font-semibold text-custom-charcoal">Notification Preferences</h3>
       
       <div className="space-y-6">
         <div>
-          <p className="text-[10px] font-bold text-gray-400 uppercase mb-4 tracking-widest">Email Notifications</p>
+          <p className="text-base font-semibold text-custom-charcoal mb-4">Email Notifications</p>
           <NotificationItem title="Account Updates" desc="Receive emails about account changes." />
           <NotificationItem title="Subscription Changes" desc="Receive notifications about subscription updates." />
           <NotificationItem title="System Alerts" desc="Important platform notifications." />
         </div>
 
         <div className="pt-4">
-          <p className="text-[10px] font-bold text-gray-400 uppercase mb-4 tracking-widest">In-App Notifications</p>
+          <p className="text-base font-semibold text-custom-charcoal mb-4">In-App Notifications</p>
           <NotificationItem title="New Client Registrations" desc="Notify when new clients register." />
           <NotificationItem title="Subscription Updates" desc="Notify when subscriptions change." />
           <NotificationItem title="Usage Alerts" desc="Notify when usage thresholds are reached." />
@@ -36,8 +38,23 @@ export default function NotificationPreferences() {
       </div>
 
       <div className="flex justify-end gap-3 pt-6 border-t border-gray-50">
-        <button className="px-6 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-600">Cancel</button>
-        <button className="px-6 py-2.5 rounded-lg bg-custom-dark-blue text-white text-sm font-medium">Save Preferences</button>
+        <Button 
+          type="button"
+          variant="soft" 
+          className="px-6 !py-2.5 text-sm" // padding aur text size design ke mutabiq
+          onClick={() => console.log("Preferences cancelled")}
+        >
+          Cancel
+        </Button>
+        
+        <Button 
+          type="button"
+          variant="filled" 
+          className="px-6 !py-2.5 text-sm"
+          onClick={() => console.log("Preferences saved!")}
+        >
+          Save Preferences
+        </Button>
       </div>
     </div>
   );
