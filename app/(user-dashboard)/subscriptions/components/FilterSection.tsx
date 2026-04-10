@@ -5,8 +5,12 @@ import { ChevronDown } from 'lucide-react';
 
 export default function FilterSection({ onSearch, onPlanChange, onStatusChange, onBillingChange }: any) {
   return (
+    // md:flex-row desktop ke liye aur flex-col mobile ke liye, gap-4 spacing handle karega
     <div className="flex flex-col md:flex-row items-center gap-4 w-full font-sans">
-      <div className="relative flex-[2] max-w-lg">
+      
+      {/* Search Input Container */}
+      {/* Mobile par w-full aur desktop par max-w-lg */}
+      <div className="relative w-full md:flex-[2] md:max-w-lg">
         <div className="absolute left-4 top-1/2 -translate-y-1/2">
           <Image src="/images/svg-icons/search-icon.svg" alt="search" width={17} height={17} className="" />
         </div>
@@ -18,9 +22,11 @@ export default function FilterSection({ onSearch, onPlanChange, onStatusChange, 
         />
       </div>
 
-      <div className="flex flex-1 gap-3 w-full">
+      {/* Selects Container */}
+      {/* flex-wrap add kiya hai taake agar screen bhot choti ho to selects niche shift ho jayein */}
+      <div className="flex flex-wrap md:flex-nowrap flex-1 gap-3 w-full">
         {/* Plans */}
-        <div className="relative flex-1">
+        <div className="relative flex-1 min-w-[120px]">
           <select onChange={(e) => onPlanChange(e.target.value)} className="w-full appearance-none bg-custom-white border border-custom-border rounded-lg px-4 py-3.5 text-sm font-medium text-custom-charcoal focus:outline-none cursor-pointer pr-10">
             <option value="All Plans">All Plans</option>
             <option value="Premium">Premium</option>
@@ -31,7 +37,7 @@ export default function FilterSection({ onSearch, onPlanChange, onStatusChange, 
         </div>
 
         {/* Status */}
-        <div className="relative flex-1">
+        <div className="relative flex-1 min-w-[120px]">
           <select onChange={(e) => onStatusChange(e.target.value)} className="w-full appearance-none bg-custom-white border border-custom-border rounded-lg px-4 py-3.5 text-sm font-medium text-custom-charcoal focus:outline-none cursor-pointer pr-10">
             <option value="All Status">All Status</option>
             <option value="Active">Active</option>
@@ -42,7 +48,7 @@ export default function FilterSection({ onSearch, onPlanChange, onStatusChange, 
         </div>
 
         {/* Billing */}
-        <div className="relative flex-1">
+        <div className="relative flex-1 min-w-[120px]">
           <select onChange={(e) => onBillingChange(e.target.value)} className="w-full appearance-none bg-custom-white border border-custom-border rounded-lg px-4 py-3.5 text-sm font-medium text-custom-charcoal focus:outline-none cursor-pointer pr-10">
             <option value="All Billing">All Billing</option>
             <option value="Monthly">Monthly</option>

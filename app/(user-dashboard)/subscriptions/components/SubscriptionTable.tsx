@@ -8,7 +8,6 @@ export default function SubscriptionTable({ data, onEdit }: any) {
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  // Bahar click karne par menu band karne ke liye logic
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -29,72 +28,76 @@ export default function SubscriptionTable({ data, onEdit }: any) {
   };
 
   return (
-    <div className="bg-custom-white rounded-xl overflow-hidden shadow-sm">
-      <table className="w-full text-left border-collapse">
-        <thead>
-          <tr className="border-b border-custom-border text-sm font-semibold text-custom-charcoal">
-            <th className="px-6 py-4">Client Name</th>
-            <th className="px-6 py-4">Email</th>
-            <th className="px-6 py-4">Plan</th>
-            <th className="px-6 py-4">Billing Cycle</th>
-            <th className="px-6 py-4">Status</th>
-            <th className="px-6 py-4">Expiry Date</th>
-            <th className="px-6 py-4 text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-50">
-          {data.map((row: any) => (
-            <tr 
-              key={row.id} 
-              onClick={() => router.push(`/subscriptions/${row.id}`)}
-              className="hover:bg-gray-50/80 transition-colors cursor-pointer group"
-            >
-              <td className="px-6 py-4 font-semibold text-custom-charcoal text-sm">{row.name}</td>
-              <td className="px-6 py-4 font-normal text-custom-dim-gray text-sm">{row.email}</td>
-              <td className="px-6 py-4 text-gray-600 text-sm">{row.plan}</td>
-              <td className="px-6 py-4 text-gray-600 text-sm">{row.cycle}</td>
-              <td className="px-6 py-4">
-                <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${getStatusStyle(row.status)}`}>
-                  {row.status}
-                </span>
-              </td>
-              <td className="px-6 py-4 text-gray-600 text-sm">{row.expiry}</td>
-              
-              <td className="px-6 py-4 text-center relative">
-                <button 
-                  onClick={(e) => { 
-                    e.stopPropagation(); 
-                    setOpenMenuId(openMenuId === row.id ? null : row.id); 
-                  }}
-                  className="p-1 hover:bg-gray-200 rounded-md transition-colors"
-                >
-                  <MoreVertical size={16} className="text-gray-400" />
-                </button>
-
-                {/* Dropdown Menu */}
-                {openMenuId === row.id && (
-                  <div 
-                    ref={menuRef}
-                    className="absolute right-10 top-1/2 -translate-y-1/2 z-50 bg-white border border-gray-100 shadow-lg rounded-lg py-1 w-28"
-                  >
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onEdit(row);
-                        setOpenMenuId(null);
-                      }}
-                      className="w-full flex items-center gap-2 px-4 py-2 text-sm cursor-pointer text-gray-700 hover:bg-gray-50 transition-colors"
-                    >
-                      <Edit2 size={14} className="text-gray-500 cursor-pointer" />
-                      Edit
-                    </button>
-                  </div>
-                )}
-              </td>
+    <div className="bg-custom-white rounded-xl shadow-sm overflow-hidden">
+      {/* Scrollable Wrapper Added Here */}
+      <div className="w-full overflow-x-auto custom-scrollbar">
+        <table className="w-full text-left border-collapse min-w-[800px]">
+          {/* min-w-[800px] ensure karta hai ke columns mobile par compress na hon */}
+          <thead>
+            <tr className="border-b border-custom-border text-sm font-semibold text-custom-charcoal">
+              <th className="px-6 py-4">Client Name</th>
+              <th className="px-6 py-4">Email</th>
+              <th className="px-6 py-4">Plan</th>
+              <th className="px-6 py-4">Billing Cycle</th>
+              <th className="px-6 py-4">Status</th>
+              <th className="px-6 py-4">Expiry Date</th>
+              <th className="px-6 py-4 text-center">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-gray-50">
+            {data.map((row: any) => (
+              <tr 
+                key={row.id} 
+                onClick={() => router.push(`/subscriptions/${row.id}`)}
+                className="hover:bg-gray-50/80 transition-colors cursor-pointer group"
+              >
+                <td className="px-6 py-4 font-semibold text-custom-charcoal text-sm">{row.name}</td>
+                <td className="px-6 py-4 font-normal text-custom-dim-gray text-sm">{row.email}</td>
+                <td className="px-6 py-4 text-gray-600 text-sm">{row.plan}</td>
+                <td className="px-6 py-4 text-gray-600 text-sm">{row.cycle}</td>
+                <td className="px-6 py-4">
+                  <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${getStatusStyle(row.status)}`}>
+                    {row.status}
+                  </span>
+                </td>
+                <td className="px-6 py-4 text-gray-600 text-sm">{row.expiry}</td>
+                
+                <td className="px-6 py-4 text-center relative">
+                  <button 
+                    onClick={(e) => { 
+                      e.stopPropagation(); 
+                      setOpenMenuId(openMenuId === row.id ? null : row.id); 
+                    }}
+                    className="p-1 hover:bg-gray-200 rounded-md transition-colors"
+                  >
+                    <MoreVertical size={16} className="text-gray-400" />
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {openMenuId === row.id && (
+                    <div 
+                      ref={menuRef}
+                      className="absolute right-10 top-1/2 -translate-y-1/2 z-50 bg-white border border-gray-100 shadow-lg rounded-lg py-1 w-28"
+                    >
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onEdit(row);
+                          setOpenMenuId(null);
+                        }}
+                        className="w-full flex items-center gap-2 px-4 py-2 text-sm cursor-pointer text-gray-700 hover:bg-gray-50 transition-colors"
+                      >
+                        <Edit2 size={14} className="text-gray-500 cursor-pointer" />
+                        Edit
+                      </button>
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
