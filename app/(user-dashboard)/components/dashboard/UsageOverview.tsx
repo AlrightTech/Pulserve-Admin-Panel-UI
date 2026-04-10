@@ -24,18 +24,18 @@ import { FileText, MessageSquare, BarChart2, ArrowUp } from 'lucide-react';
 //   { name: 'Feb 19', active: 3500, responses: 3450 },
 // ];
 const data = [
-  { name: 'Jan', active: 2600, responses: 2500 },
-  { name: 'Feb', active: 2800, responses: 2700 },
-  { name: 'Mar', active: 3000, responses: 2900 },
-  { name: 'Apr', active: 3200, responses: 3100 },
-  { name: 'May', active: 3300, responses: 3200 },
-  { name: 'Jun', active: 3400, responses: 3350 },
-  { name: 'Jul', active: 3450, responses: 3400 },
-  { name: 'Aug', active: 3500, responses: 3450 },
-  { name: 'Sep', active: 3550, responses: 3500 },
-  { name: 'Oct', active: 3600, responses: 3550 },
-  { name: 'Nov', active: 3650, responses: 3600 },
-  { name: 'Dec', active: 3700, responses: 3650 },
+  { name: 'Jan', active: 2100, responses: 65000 },
+  { name: 'Feb', active: 2350, responses: 72000 },
+  { name: 'Mar', active: 2600, responses: 81000 },
+  { name: 'Apr', active: 2800, responses: 89000 },
+  { name: 'May', active: 2950, responses: 98000 },
+  { name: 'Jun', active: 3100, responses: 105000 },
+  { name: 'Jul', active: 3200, responses: 112000 },
+  { name: 'Aug', active: 3350, responses: 118000 },
+  { name: 'Sep', active: 3450, responses: 125000 },
+  { name: 'Oct', active: 3550, responses: 132000 },
+  { name: 'Nov', active: 3650, responses: 138000 },
+  { name: 'Dec', active: 3800, responses: 142500 },
 ];
 
 const UsageOverview = () => {
@@ -150,72 +150,78 @@ const UsageOverview = () => {
 
       {/* Horizontal Scroll Wrapper - Tailwind se scroll control */}
       <div className="w-full overflow-x-auto pb-4 custom-scrollbar">
-        {/* min-w-[700px]: Mobile par chart ko squeeze hone se bachayega.
-            md:min-w-full: Desktop par scroll hatakar full width kar dega.
-        */}
-        <div className="h-[320px] min-w-[750px] md:min-w-full">
+        <div className="h-[400px] min-w-[800px] md:min-w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart 
-              data={data} 
-              margin={{ top: 10, right: 30, left: -20, bottom: 0 }}
-            >
+            <AreaChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 20 }}>
               <defs>
                 <linearGradient id="colorActive" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#1E3A8A" stopOpacity={0.1}/>
-                  <stop offset="95%" stopColor="#1E3A8A" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#0a1d37" stopOpacity={0.1}/>
+                  <stop offset="95%" stopColor="#0a1d37" stopOpacity={0}/>
                 </linearGradient>
               </defs>
               
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F3F4F6" />
+              <CartesianGrid vertical={false} stroke="#F1F5F9" />
               
               <XAxis 
                 dataKey="name" 
                 axisLine={false} 
                 tickLine={false} 
-                tick={{fill: '#9CA3AF', fontSize: 11}} 
-                dy={10}
-                // Force all 12 months to show
-                interval={0} 
-                padding={{ left: 20, right: 20 }}
+                tick={{ fill: '#666666', fontSize: 12 }} 
+                dy={15}
               />
               
+              {/* Left Y-Axis: Active Surveys (0 to 4000) */}
               <YAxis 
+                yAxisId="left"
                 axisLine={false} 
                 tickLine={false} 
-                tick={{fill: '#9CA3AF', fontSize: 11}} 
+                tick={{ fill: '#666666', fontSize: 12 }}
+                domain={[0, 4000]} // Scale fix
+                tickCount={5}
+              />
+
+              {/* Right Y-Axis: Responses (0 to 150k) */}
+              <YAxis 
+                yAxisId="right"
+                orientation="right"
+                axisLine={false} 
+                tickLine={false} 
+                tick={{ fill: '#ed714d', fontSize: 12 }}
+                domain={[0, 150000]} // Scale fix
+                tickCount={5}
+                tickFormatter={(value) => `${value / 1000}k`} // 20k, 40k format
               />
               
               <Tooltip 
-                contentStyle={{ 
-                  borderRadius: '12px', 
-                  border: 'none', 
-                  boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' 
-                }}
+                contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px rgba(0,0,0,0.1)' }}
               />
               
               <Area 
+                yAxisId="left"
                 type="monotone" 
                 dataKey="active" 
-                stroke="#1E3A8A" 
-                strokeWidth={2.5}
-                fillOpacity={1} 
+                stroke="#0a1d37" 
+                strokeWidth={3}
                 fill="url(#colorActive)" 
-                animationDuration={1500}
+                dot={{ r: 4, fill: "#0a1d37", strokeWidth: 2, stroke: "#fff" }}
               />
               
               <Area 
+                yAxisId="right"
                 type="monotone" 
                 dataKey="responses" 
-                stroke="#F97316" 
-                strokeWidth={2.5}
+                stroke="#ed714d" 
+                strokeWidth={3}
                 fill="transparent"
-                animationDuration={1500}
+                dot={{ r: 4, fill: "#ed714d", strokeWidth: 2, stroke: "#fff" }}
               />
             </AreaChart>
           </ResponsiveContainer>
         </div>
       </div>
     </div>
+
+
   );
 };
 

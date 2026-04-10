@@ -73,11 +73,26 @@ export default function Login() {
           </div>
 
           <div className="flex justify-between items-center lg:text-md">
-            <label className="flex items-center gap-2 cursor-pointer font-normal text-custom-auth tracking-tight text-base">
-              <input 
-                type="checkbox" 
-                className="w-4 h-4 appearance-none border border-solid border-[#CFD9E0] rounded-[4px] cursor-pointer checked:bg-custom-coral checked:border-custom-coral relative transition-all duration-200"
-              />
+            <label className="flex items-center gap-2 cursor-pointer font-normal text-custom-auth tracking-tight text-base group">
+              <div className="relative flex items-center justify-center">
+                <input 
+                  type="checkbox" 
+                  className="peer w-4 h-4 appearance-none border border-solid border-[#CFD9E0] rounded-[4px] cursor-pointer checked:bg-custom-coral checked:border-custom-coral transition-all duration-200"
+                />
+                {/* Yeh SVG sirf tab dikhega jab input check hoga */}
+                <svg 
+                  className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity duration-200" 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="4" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
               Remember me
             </label>
             <Link
