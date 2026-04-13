@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Search, X, LogOut, Settings, User, ChevronRight } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // Step 1: Router import karein
 
 const notifications = [
   { id: 1, title: "New subscription activated", desc: "Guy Hawkins just activated Premium plan.", time: "2 min ago", unread: true },
@@ -12,12 +13,14 @@ const notifications = [
 ];
 
 const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
+  const router = useRouter(); // Step 2: Router initialize karein
   const [isSearchOpen,  setIsSearchOpen]  = useState(false);
   const [isNotiOpen,    setIsNotiOpen]    = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [notifList,     setNotifList]     = useState(notifications);
   const [isMobile,      setIsMobile]      = useState(false);
 
+  // ... (Baaki saare refs aur effects wahi rahenge)
   const notiButtonRef    = useRef<HTMLButtonElement>(null);
   const profileButtonRef = useRef<HTMLDivElement>(null);
   const notiDropRef      = useRef<HTMLDivElement>(null);
@@ -26,7 +29,6 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
   const [notiPos,    setNotiPos]    = useState({ top: 0, right: 0 });
   const [profilePos, setProfilePos] = useState({ top: 0, right: 0 });
 
-  // Mobile check
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
     checkMobile();
@@ -56,7 +58,6 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
     setIsNotiOpen(false);
   };
 
-  // Click outside handler
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       const target = e.target as Node;
@@ -77,11 +78,20 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
   const unreadCount = notifList.filter(n => n.unread).length;
   const markAllRead = () => setNotifList(prev => prev.map(n => ({ ...n, unread: false })));
 
+  // Navigation Handlers
+  const handleLogout = () => {
+    setIsProfileOpen(false);
+    router.push('/login'); // localhost:3000/login par le jayega
+  };
+
+  const handleViewAllNotifications = () => {
+    setIsNotiOpen(false);
+    router.push('/notifications'); // folder structure ke mutabiq route
+  };
+
   return (
     <>
       <header className="h-16 lg:h-20 bg-white border-b border-[#0000001A] flex items-center justify-between px-4 lg:px-8 sticky top-0 z-30">
-
-        {/* Left Section */}
         <div className="flex items-center gap-3 flex-1">
           <button
             onClick={onMenuClick}
@@ -118,10 +128,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
           </div>
         </div>
 
-        {/* Right Section */}
         <div className={`items-center gap-3 lg:gap-6 ml-3 ${isSearchOpen ? "hidden sm:flex" : "flex"}`}>
-
-          {/* Notification Bell */}
           <button
             ref={notiButtonRef}
             onClick={openNoti}
@@ -139,7 +146,6 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
             )}
           </button>
 
-          {/* Profile Avatar */}
           <div
             ref={profileButtonRef}
             onClick={openProfile}
@@ -147,7 +153,6 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
           >
             <Image src="/images/profile-img.png" alt="Profile" fill className="object-cover" />
           </div>
-
         </div>
       </header>
 
@@ -162,7 +167,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
           }
           className="fixed w-[90vw] sm:w-80 bg-white rounded-xl border border-gray-100 shadow-xl z-[999] overflow-hidden"
         >
-          {/* Header */}
+          {/* ... Header & List (Wahi purana UI) */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
             <div className="flex items-center gap-2">
               <p className="text-sm font-bold text-custom-charcoal">Notifications</p>
@@ -182,7 +187,6 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
             )}
           </div>
 
-          {/* List */}
           <div className="max-h-72 overflow-y-auto divide-y divide-gray-50">
             {notifList.map(n => (
               <div
@@ -201,9 +205,12 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
             ))}
           </div>
 
-          {/* Footer */}
+          {/* Footer with Router Push */}
           <div className="border-t border-gray-100 px-4 py-2.5">
-            <button className="w-full text-xs text-center text-custom-coral font-medium hover:underline flex items-center justify-center gap-1 cursor-pointer">
+            <button 
+              onClick={handleViewAllNotifications} // Click handle kiya
+              className="w-full text-xs text-center text-custom-coral font-medium hover:underline flex items-center justify-center gap-1 cursor-pointer"
+            >
               View all notifications <ChevronRight size={12} />
             </button>
           </div>
@@ -217,30 +224,26 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
           style={{ top: profilePos.top, right: profilePos.right }}
           className="fixed w-56 bg-white rounded-xl border border-gray-100 shadow-xl z-[999] overflow-hidden"
         >
+          {/* ... Top Section */}
           <div className="px-4 py-3 border-b border-gray-100">
             <p className="text-sm font-bold text-custom-charcoal">System Admin</p>
             <p className="text-xs text-gray-400 mt-0.5">admin@pulserv.com</p>
           </div>
 
           <div className="py-1">
-            <Link
-              href="/settings"
-              onClick={() => setIsProfileOpen(false)}
-              className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors"
-            >
+            <Link href="/settings" onClick={() => setIsProfileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
               <User size={15} className="text-gray-400" /> My Profile
             </Link>
-            <Link
-              href="/settings"
-              onClick={() => setIsProfileOpen(false)}
-              className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors"
-            >
+            <Link href="/settings" onClick={() => setIsProfileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
               <Settings size={15} className="text-gray-400" /> Settings
             </Link>
           </div>
 
           <div className="border-t border-gray-100 py-1">
-            <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors cursor-pointer">
+            <button 
+              onClick={handleLogout} // Click handle kiya
+              className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
+            >
               <LogOut size={15} /> Logout
             </button>
           </div>
