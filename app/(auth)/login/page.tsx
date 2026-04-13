@@ -3,10 +3,46 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Eye, EyeOff } from "lucide-react";
+import { useRouter } from "next/navigation"; // Next.js navigation
 import Button from "@/app/components/ui/Button";
 
 export default function Login() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false); // Loading state
+
+  // Form states
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    rememberMe: false
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value
+    }));
+  };
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    console.log("Next.js Login Data:", formData);
+    
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    router.push("/"); 
+    
+  } catch (error) {
+    console.error("Login failed:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="flex flex-col w-full mx-auto px-8 lg:px-14 py-8 bg-custom-white">
@@ -21,10 +57,7 @@ export default function Login() {
       </div>
 
       <div>
-        <Link
-          href="/"
-          className=" text-custom-dark-blue hover:text-custom-coral"
-        >
+        <Link href="/" className="text-custom-dark-blue hover:text-custom-coral">
           <ArrowLeft size={20} />
         </Link>
       </div>
@@ -38,18 +71,23 @@ export default function Login() {
         </p>
       </div>
 
-      <div className="space-y-6 lg:px-10 ">
+      <div className="space-y-6 lg:px-10">
         <h3 className="text-3xl font-bold text-custom-charcoal mb-8">Login</h3>
-        <form className="space-y-5">
+        
+        <form className="space-y-5" onSubmit={handleSubmit}>
           <div className="space-y-2">
-            <label className=" font-medium text-custom-auth tracking-tight text-base">
+            <label className="font-medium text-custom-auth tracking-tight text-base">
               E-mail
             </label>
             <input
+              name="email"
               type="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
               placeholder="admin@email.com"
               className="mt-3 w-full px-3 py-3 bg-[#F7FAFC] border border-custom-border rounded-lg focus:outline-none text-custom-custom-authtext text-base"
-            />{" "}
+            />
           </div>
 
           <div className="space-y-2 mt-8">
@@ -58,7 +96,11 @@ export default function Login() {
             </label>
             <div className="mt-3 flex w-full border border-custom-border rounded-lg overflow-hidden bg-[#F7FAFC]">
               <input
+                name="password"
                 type={showPassword ? "text" : "password"}
+                required
+                value={formData.password}
+                onChange={handleChange}
                 placeholder="****"
                 className="flex-1 px-3 py-3 bg-[#F7FAFC] focus:outline-none text-custom-custom-authtext text-base"
               />
@@ -76,47 +118,37 @@ export default function Login() {
             <label className="flex items-center gap-2 cursor-pointer font-normal text-custom-auth tracking-tight text-base group">
               <div className="relative flex items-center justify-center">
                 <input 
+                  name="rememberMe"
                   type="checkbox" 
+                  checked={formData.rememberMe}
+                  onChange={handleChange}
                   className="peer w-4 h-4 appearance-none border border-solid border-[#CFD9E0] rounded-[4px] cursor-pointer checked:bg-custom-coral checked:border-custom-coral transition-all duration-200"
                 />
-                {/* Yeh SVG sirf tab dikhega jab input check hoga */}
-                <svg 
-                  className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity duration-200" 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="4" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                >
+                <svg className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
               </div>
               Remember me
             </label>
-            <Link
-              href="/forgot-password"
-              className="text-md font-semibold text-custom-coral underline"
-            >
+            <Link href="/forgot-password" className="text-md font-semibold text-custom-coral underline">
               Forgot Password?
-            </Link>{" "}
+            </Link>
           </div>
 
           <Button
+            type="submit"
+            disabled={loading}
             variant="filled"
             rounded="lg"
             className="text-sm! w-full py-3.5 bg-custom-dark-blue hover:bg-[#001D35] mt-6"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </Button>
         </form>
+        
         <p className="text-center text-base text-custom-medium-gray pt-0">
           Don't have an account?{" "}
-          <Link
-            href="/signup"
-            className="text-custom-coral font-normal underline"
-          >
+          <Link href="/signup" className="text-custom-coral font-normal underline">
             Signup
           </Link>
         </p>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { LucideIcon } from 'lucide-react' // 1. LucideIcon import karein
+import { LucideIcon } from 'lucide-react' 
 
 type RoundedSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'
 type ButtonVariant = 'filled' | 'outlined' | 'soft' | 'ghosted' | 'disabled'

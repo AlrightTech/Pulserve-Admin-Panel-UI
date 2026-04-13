@@ -37,7 +37,7 @@ export default function SettingsPage() {
         </div>
 
         {/* Content Container */}
-        <div className="flex-1 w-full bg-custom-white rounded-xl border border-t border-[#E0E0E0] shadow-[0px_1px_2px_-1px_#0000001A,0px_1px_3px_0px_#0000001A] p-4 sm:p-8 min-h-[500px]">
+        <div className="flex-1 w-full bg-custom-white rounded-xl border border-t border-[#E0E0E0] shadow-[0px_1px_2px_-1px_#0000001A,0px_1px_3px_0px_#0000001A] p-4 sm:p-8">
           {activeTab === 'profile' && <ProfileSettings />}
           {activeTab === 'password' && <ChangePassword />}
           {activeTab === 'notifications' && <NotificationPreferences />}
