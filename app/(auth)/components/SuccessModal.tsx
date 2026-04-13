@@ -1,7 +1,8 @@
 "use client";
-import React from 'react';
-import { X, Check } from 'lucide-react';
-import Button from '@/app/components/ui/Button';
+import React from "react";
+import { X, Check } from "lucide-react";
+import Button from "@/app/components/ui/Button";
+import Link from "next/link";
 
 interface SuccessModalProps {
   isOpen: boolean;
@@ -15,7 +16,10 @@ export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
       <div className="relative w-full max-w-lg bg-white rounded-2xl p-8 shadow-xl text-center">
         {/* Close Button */}
-        <button onClick={onClose} className="absolute right-4 top-4 text-gray-400 hover:text-gray-600">
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 text-gray-400 hover:text-gray-600"
+        >
           <X size={20} />
         </button>
 
@@ -35,13 +39,14 @@ export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
         </p>
 
         {/* CTA Button */}
-        <Button 
-            variant="filled" 
+        <Link href="/activation">
+          <Button
+            variant="filled"
             className="w-42 py-3 bg-custom-dark-blue text-custom-white font-normal rounded-lg mx-auto block"
-            onClick={() => { /* Navigate to pricing */ }}
-            >
+          >
             Choose Plan
-        </Button>
+          </Button>
+        </Link>
       </div>
     </div>
   );
