@@ -48,8 +48,7 @@ export default function ProfileSettings() {
 
       <div className="space-y-4">
         <p className="text-sm font-semibold text-custom-charcoal">Profile Photo</p>
-        <div className="flex flex-col gap-5">
-          
+        <div className="flex flex-col gap-5">      
           <input 
             type="file" 
             ref={fileInputRef} 
@@ -57,19 +56,17 @@ export default function ProfileSettings() {
             className="hidden" 
             accept="image/*"
           />
-
           <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-custom-dark-blue border-4 border-[#ED714D] flex items-center justify-center text-white text-xl font-bold overflow-hidden">
             {profileImage ? (
               <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
             ) : (
               "SA"
             )}
-          </div>
-          
+          </div>     
           <button 
             type="button"
             onClick={triggerFileInput} 
-            className="text-custom-coral text-left text-sm font-medium underline underline-offset-4 hover:opacity-80 transition-all"
+            className="cursor-pointer text-custom-coral text-left text-sm font-medium underline underline-offset-4 hover:opacity-80 transition-all"
           >
             Edit Photo
           </button>

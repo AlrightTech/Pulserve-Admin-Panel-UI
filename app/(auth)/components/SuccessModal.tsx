@@ -13,7 +13,7 @@ export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-      <div className="relative w-full max-w-[400px] bg-white rounded-2xl p-8 shadow-xl text-center">
+      <div className="relative w-full max-w-lg bg-white rounded-2xl p-8 shadow-xl text-center">
         {/* Close Button */}
         <button onClick={onClose} className="absolute right-4 top-4 text-gray-400 hover:text-gray-600">
           <X size={20} />

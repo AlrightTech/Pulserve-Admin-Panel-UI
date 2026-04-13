@@ -35,8 +35,13 @@ const LeftSection = () => {
     if (pathname.includes('/verify-email')) {
       return {
         title: "Verifying Your Email",
-        desc: "We've sent a verification Code to your email address to confirm your account."
-      };
+        desc: (
+              <>
+                We've sent a verification Code to your email <br /> 
+                address to confirm your account.
+              </>
+            )      
+          };
     }
 
     // 5. Verify Email Case (Automatic Fetch wala page)
@@ -82,10 +87,10 @@ const LeftSection = () => {
       <div className="h-10 z-10"></div>
 
       <div className="relative z-10 flex flex-col items-center text-center space-y-6 flex-1 justify-center">
-        <h1 className="text-3xl lg:text-4xl font-semibold text-custom-white leading-[1.3] font-dm-sans max-w-sm">
+        <h1 className="text-custom-autheading font-semibold text-custom-white leading-[1.3] font-dm-sans lg:px-12">
           {title}
         </h1>
-        <p className="text-lg max-w-xs font-regular text-custom-white opacity-90">
+        <p className="text-lg font-normal text-custom-white opacity-90">
           {desc}
         </p>
       </div>
@@ -95,8 +100,8 @@ const LeftSection = () => {
          <Image 
             src="/images/pulserv-logo.png" 
             alt="Pulserv Logo" 
-            width={160} 
-            height={50} 
+            width={180} 
+            height={70} 
             className="object-contain" 
          />
       </div>

@@ -29,6 +29,9 @@
   --text-heading-main: 20px;
   --text-subheading-size: 16px;
   --text-button1-size: 11.4px;
+
+  /* left-section-auth */
+  --text-custom-autheading: 25px;
 }
 
 @layer components {

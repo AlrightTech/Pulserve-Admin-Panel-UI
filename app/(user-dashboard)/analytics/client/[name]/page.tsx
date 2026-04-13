@@ -2,7 +2,8 @@
 import React from 'react';
 import { useParams } from 'next/navigation';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { MousePointer2, Users, BarChart3 } from 'lucide-react';
+import { MousePointer2, Users, BarChart3 , TrendingUp } from 'lucide-react';
+
 
 // Chart Data matching the visual trend in the image
 const data = [
@@ -30,7 +31,7 @@ export default function ClientAnalyticsDetail() {
 
       {/* User Overview Section */}
       <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
-        <h3 className="text-lg font-bold text-custom-charcoal mb-8">User Overview</h3>
+        <h3 className="text-xl font-semibold text-custom-charcoal mb-8">User Overview</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
           <OverviewItem label="Primary Contact" value={formattedName} />
           <OverviewItem label="Contact Email" value="john.smith@acme.com" />
@@ -38,14 +39,14 @@ export default function ClientAnalyticsDetail() {
           <OverviewItem label="Subscription Expiry" value="January 15, 2025" />
           
           <div className="space-y-2">
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Account Status</p>
+            <p className="text-xs font-normal text-custom-dim-gray">Account Status</p>
             <span className="inline-flex px-3 py-1 bg-[#E8F5E9] text-green-600 rounded-full text-[10px] font-bold">
               Active
             </span>
           </div>
 
           <div className="space-y-2">
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Subscription Status</p>
+            <p className="text-xs font-normal text-custom-dim-gray">Subscription Status</p>
             <span className="inline-flex px-3 py-1 bg-[#E8F5E9] text-green-600 rounded-full text-[10px] font-bold">
               Active
             </span>
@@ -55,28 +56,42 @@ export default function ClientAnalyticsDetail() {
 
       {/* Usage Summary Section */}
       <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm space-y-10">
-        <h3 className="text-lg font-bold text-custom-charcoal">Usage Summary</h3>
+        <h3 className="text-xl font-semibold text-custom-charcoal">Usage Summary</h3>
         
-        {/* Metric Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <MetricCard 
-            icon={<MousePointer2 size={14} className="text-blue-500" />}
-            label="Active Surveys" 
-            value="12" 
-            bgColor="bg-[#F0F7FF]" 
-          />
-          <MetricCard 
-            icon={<Users size={14} className="text-green-500" />}
-            label="Total Responses" 
-            value="4,532" 
-            bgColor="bg-[#F2FBF4]" 
-          />
-          <MetricCard 
-            icon={<BarChart3 size={14} className="text-purple-500" />}
-            label="Avg. per Survey" 
-            value="378" 
-            bgColor="bg-[#F9F5FF]" 
-          />
+{/* Stats Cards Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {/* Active Surveys */}
+          <div className="bg-[#EFF6FF] px-4 py-4 rounded-xl">
+            <div className="flex items-center gap-2 text-[#3B82F6] mb-3">
+              <TrendingUp  size={14} />
+              <span className="text-xs font-normal text-custom-dim-gray">
+                Active Surveys
+              </span>
+            </div>
+            <h2 className="text-2xl font-sans font-bold text-custom-charcoal">5</h2>
+          </div>
+
+          {/* Total Responses */}
+          <div className="bg-[#F0FDF4] px-4 py-4 rounded-xl">
+            <div className="flex items-center gap-2 text-[#22C55E] mb-3">
+              <TrendingUp size={14} />
+              <span className="text-xs font-normal text-custom-dim-gray">
+                Total Responses
+              </span>
+            </div>
+            <h2 className="text-2xl font-sans font-bold text-custom-charcoal">1,234</h2>
+          </div>
+
+          {/* Avg per Survey */}
+          <div className="bg-[#FAF5FF] px-4 py-4 rounded-xl">
+            <div className="flex items-center gap-2 text-[#A855F7] mb-3">
+              <TrendingUp size={14} />
+              <span className="text-xs font-normal text-custom-dim-gray">
+                Avg. per Survey
+              </span>
+            </div>
+            <h2 className="text-2xl font-sans font-bold text-custom-charcoal">247</h2>
+          </div>
         </div>
 
         {/* Usage Trend Chart */}
@@ -122,7 +137,7 @@ export default function ClientAnalyticsDetail() {
 function OverviewItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="space-y-2">
-      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{label}</p>
+      <p className="text-xs font-normal text-custom-dim-gray">{label}</p>
       <p className="text-sm text-custom-charcoal font-medium">{value}</p>
     </div>
   );

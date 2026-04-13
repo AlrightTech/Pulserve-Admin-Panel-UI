@@ -42,7 +42,7 @@ export default function VerifyEmailPage() {
         {/* Resend Link */}
         <button 
           type="button" 
-          className="text-custom-dim-gray font-normal underline mt-4 hover:opacity-80 block text-base"
+          className="text-custom-dim-gray font-normal underline mt-4 hover:opacity-80 block text-base cursor-pointer"
         >
           Resend Again
         </button>
@@ -51,6 +51,7 @@ export default function VerifyEmailPage() {
       {/* Button Section */}
       <div className="lg:px-12 mt-10">
         <Button 
+          href="/"
           variant="filled" 
           rounded="lg" 
           className="w-full py-4 bg-[#D1D5DB] text-custom-white font-semibold text-sm cursor-not-allowed opacity-40"

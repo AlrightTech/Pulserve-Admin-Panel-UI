@@ -87,6 +87,7 @@ export default function VerifyOTPPage() {
           </div>
 
           <Button 
+            href="/"
             variant="filled" 
             rounded="lg" 
             className="w-full py-4 bg-custom-dark-blue hover:bg-[#001D35] font-semibold text-custom-white text-sm mt-4"

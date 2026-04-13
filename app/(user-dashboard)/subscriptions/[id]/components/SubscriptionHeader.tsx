@@ -12,15 +12,15 @@ interface SubscriptionHeaderProps {
 const statusConfig = {
   Active: {
     icon: "/images/svg-icons/active-icon.svg",
-    className: "bg-green-50 text-green-600",
+    className: "bg-[#E8F5E9] text-[#2E7D32]",
   },
   Trial: {
     icon: "/images/svg-icons/trial-icon.svg",
-    className: "bg-blue-50 text-blue-600",
+    className: "bg-blue-50 text-blue-700",
   },
   Cancelled: {
     icon: "/images/svg-icons/cancelled-icon.svg",
-    className: "bg-red-50 text-red-600",
+    className: "bg-red-50 text-red-700",
   },
 };
 

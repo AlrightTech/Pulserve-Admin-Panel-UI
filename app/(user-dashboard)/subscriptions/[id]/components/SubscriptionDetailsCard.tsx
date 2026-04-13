@@ -25,7 +25,7 @@ export default function SubscriptionDetailsCard({ user }: SubscriptionDetailsCar
         <DetailRow icon={<CreditCard size={14} />}  label="Last Payment" value={user.lastPayment} />
       </div>
 
-      <div className="pt-6 border-t border-gray-50">
+      <div className="pt-6 border-t border-gray-200">
         <h4 className="text-base font-semibold text-custom-charcoal mb-4">Plan Features</h4>
         <div className="space-y-3 text-sm">
           <div className="flex justify-between text-custom-dim-gray font-normal">
